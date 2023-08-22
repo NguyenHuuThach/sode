@@ -1,5 +1,6 @@
 FROM node:20-alpine as build
 
+ENV NODE_ENV production
 ENV NODE_OPTIONS=--max_old_space_size=8192
 
 RUN apk add curl bash
