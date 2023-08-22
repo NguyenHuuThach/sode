@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  api:
+    container_name: sode
+    build:
+      context: .
+      dockerfile: Dockerfile
+      # target: deploy
+    ports:
+      - '3051:3051'
+    volumes:
+      # - .:/app
+      # This ensures that the NestJS container manages the node_modules folder
+      # rather than synchronizes it with the host machine
+      - /app/node_modules
+    depends_on:
+      - mongo
+    restart: unless-stopped
+    networks:
+      - sode_network
+
+  mongo:
+    image: mongo:4.0.16-xenial
+    container_name: sode-mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - .docker/data/mongo:/data/db
+    restart: unless-stopped
+    networks:
+      - sode_network
+
+networks:
+  sode_network:
+    driver: bridge

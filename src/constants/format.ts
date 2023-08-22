@@ -1,0 +1,3 @@
+export const XOSO_CONGDONG_DATE_FORMAT = 'DD-MM-YYYY';
+export const XOSO_CONGDONG_DATE_BEGIN = '2006-01-02';
+// export const XOSO_CONGDONG_DATE_BEGIN = '2011-08-09';
